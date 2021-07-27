@@ -1,0 +1,1 @@
+<?php include "internal/wishlist/index.html"; ?>

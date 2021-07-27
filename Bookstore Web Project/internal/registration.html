@@ -1,0 +1,197 @@
+<!-- ACCOUNT REGISTRATION FRONTEND by Md Sajid Hossain -->
+<!-- Modified date 29/05/2021 -->
+
+<!-- REQUIRES: An account registration tab/button in the index.php and login.php -->
+<!-- ENSURES: User input of First Name, Last Name, Email Address, DOB, Phone Number, T&C.. Password matching, default telephone country code based on IP address, required field, bootstrap responsive user interface have been ensured  -->
+
+<!DOCTYPE html>
+
+<html lang="en" >
+<head>
+    <title>Account Registration</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/readable/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+   
+    <style>
+   
+    .required-field::before {
+        content: "*";
+        color: red;
+      }
+      </style>
+    
+</head>
+
+<body>
+
+    <!-- First Name -->
+    <div class="container">
+        <div class="page-header">
+            <p class="lead text-center">
+                <i class="glyphicon glyphicon-log-in"></i> Welcome To Account Registration Panel
+            </p>
+        </div>
+        <form class="form-horizontal col-xs-4 col-xs-offset-4" role="form">
+            <div class="form-group">
+                <label for="FirstName">First Name <span class="required-field"></span></label>
+
+                               
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </div>
+                    <input type="text" class="form-control" id="FirstName" placeholder="First Name" data-validation="custom" data-validation-regexp="^([a-zA-Z ]+)$" data-validation="length" data-validation-length="1-100" data-validation-error-msg-container="#ErrorName" required>
+                </div>
+                <span id="ErrorFirstName"></span>
+            </div>
+
+   <!-- Last Name -->
+            <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </div>
+                    <input type="text" class="form-control" id="LastName" placeholder="Last Name" data-validation="custom" data-validation-regexp="^([a-zA-Z ]+)$" data-validation="length" data-validation-length="1-100" data-validation-error-msg-container="#ErrorName">
+                </div>
+                <span id="ErrorLastName"></span>
+            </div>
+
+   <!-- Email Address -->
+            <div class="form-group">
+                <label for="Email">Email Address <span class="required-field"></span></label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-envelope"></i>
+                    </div>
+                    <input type="email" class="form-control" id="Email" placeholder="Email Address" data-validation="email" data-validation-error-msg-container="#ErrorEmail" required>
+                </div>
+                <span id="ErrorEmail"></span>
+            </div>
+
+    <!-- Date of Birth -->
+            <div class="form-group">
+                <label for="DOB">Date of Birth</label>
+                <div class="input-group date" id="datetimepicker1" >
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </div>
+
+                    <input type="text" class="form-control" placeholder="Date of Birth" data-validation="date" data-validation-format="mm/dd/yyyy" data-validation-error-msg-container="#ErrorDOB">
+                </div>
+                <span id="ErrorDOB"></span>
+            </div>
+
+   <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password <span class="required-field"></span></label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                    </div>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="pass_confirmation" data-validation="length" data-validation-length="min8" data-validation-error-msg-container="#ErrorPassword" onkeyup="check();" required>
+                </div>
+                <span id="ErrorPassword"></span>
+            </div>
+
+   <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="ConfirmPassword">Confirm Password <span class="required-field"></span><span id="message"></span></label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                    </div>
+                    <input type="password" class="form-control" id="ConfirmPassword" placeholder="Confirm Password" name="pass" data-validation="confirmation" data-validation-error-msg-container="#ErrorConfirmPassword"  onkeyup='check();' required> 
+                </div>
+                <span id="ErrorConfirmPassword"></span>
+                
+            </div>
+
+
+            
+   <!-- Phone Number -->
+                <div class="form-group">
+                    <label for="Phone Number">Phone Number:</label>
+                <div class="input-group">
+                    
+                    <input id="phone" type="tel" name="phone" placeholder="Phone Number" class="form-control"/>
+      
+                </div>
+                <span id="ErrorPhone"></span>
+            </div>             
+                
+            
+   <!-- Checkbox -->
+            <div class="checkbox form-group">
+                <label>
+                    <input type="checkbox" required>I accept terms and conditions and
+                    <a href="">privacy policy</a>
+                </label>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" class="form-control btn btn-primary" value="Sign Up">
+            </div>
+
+        </form>
+    </div>
+    
+</body>
+
+   <!-- Bootstrap Telephone Country Input with flag, based on local IP address -->
+<script>
+var input = document.querySelector("#phone");
+intlTelInput(input, {
+    initialCountry: "auto",
+    geoIpLookup: function(success, failure) {
+        $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+            var countryCode = (resp && resp.country) ? resp.country : "";
+            success(countryCode);
+        });
+    },
+    utilsScript: "js/utils.js"
+});
+</script>
+
+   <!-- Password matching/not-matching javascript -->
+<script>
+var check = function() {
+    if (document.getElementById('password').value ==
+        document.getElementById('ConfirmPassword').value) {
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = '&nbsp&nbsp&nbsp&nbspPassword matched';
+    } else {
+            document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerHTML = '&nbsp&nbsp&nbsp&nbspPassword not matched';
+    }
+} 
+</script>
+
+   <!-- Date time picker using bootstrap API -->
+
+<script type="text/javascript">
+
+    $(function() {
+        $('#datetimepicker1').datetimepicker();
+        
+    });
+</script>
+
+</html>

@@ -1,0 +1,1 @@
+<?php include "internal/editors_pick/editors picks.html"; ?>

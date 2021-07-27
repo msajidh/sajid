@@ -1,0 +1,1 @@
+<?php include "internal/account_settings/index.html" ?>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Register</title>
+    <link rel="stylesheet" href="assets/registration_assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/registration_assets/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="assets/registration_assets/css/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row register-form" style="background: url(&quot;assets/registration_assets/img/Home02.jpg&quot;) center / contain;">
+            <div class="col-md-8 offset-md-2">
+                <form taget="home.php" method="get" class="custom-form" style="opacity: 0.85;" >
+                    <h1 style="transform: translate(-6px);color: rgb(0,0,0);">Register Form</h1>
+                    <input id="p" name="p" value="register" type="hidden">
+                    <div class="row form-group">
+                        <div class="col-sm-4 label-column"><label class="form-label" for="pawssword-input-field" style="color: #000000;margin-top: 10px;">First Name&nbsp;</label><label class="form-label" for="pawssword-input-field" style="color: var(--bs-red);">*</label></div>
+                        <div class="col-sm-6 input-column"><input class="form-control" type="text" name="firstName_insert_cust" placeholder="First Name"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field" style="color: #000000;">Last Name</label></div>
+                        <div class="col-sm-6 input-column"><input class="form-control" type="text" name="lastName_insert" placeholder="Last Name"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4 label-column"><label class="form-label" for="pawssword-input-field" style="color: #000000;margin-top: 10px;">Email Address&nbsp;</label><label class="form-label" for="pawssword-input-field" style="color: var(--bs-red);">*</label></div>
+                        <div class="col-sm-6 input-column"><input class="form-control" type="email" name="email_insert" placeholder="Email Address" required="" minlength="2" maxlength="20"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4 label-column"><label class="col-form-label" for="dropdown-input-field" style="color: #000000;">Date of Birth</label></div>
+                        <div class="col-sm-4 input-column"><input class="form-control" name="dob_insert" type="date" style="width: 190px;"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4 label-column"><label class="form-label" for="pawssword-input-field" style="color: #000000;margin-top: 10px;">Password&nbsp;</label><label class="form-label" for="pawssword-input-field" style="color: var(--bs-red);">*</label></div>
+                        <div class="col-sm-6 input-column"><input class="form-control" type="password" name="passwordencrypted_insert" placeholder="Password" onkeyup="check()" required="" minlength="5" maxlength="25"></div>
+                
+                    </div>
+                    
+                    <div class="row form-group" >
+                        <div class="col-sm-4 label-column"><label class="form-label" for="repeat-pawssword-input-field" style="color: #000000;">Confirm Password&nbsp;</label><label class="form-label" for="pawssword-input-field" style="color: var(--bs-red);">*</label></div>
+                        <div class="col-sm-6 input-column"><input class="form-control" type="password" id = "confirmpasswordencrypted_insert" placeholder="Confirm Password" onkeyup="check()" minlength="5" maxlength="25" required=""><span id="message"></span></div>
+                        
+                    </div>
+                    
+                    <div class="row form-group">
+                        <div class="col-sm-4 label-column"><label class="col-form-label" for="dropdown-input-field" style="color: #000000;">Phone Number</label></div>
+                        <div class="col" style="height: 42px;"><input class="form-control" type="tel" name="phone_insert" placeholder="Phone Number" style="width: 190px;"></div>
+                    </div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="dataStoragePermission_insert"><label class="form-check-label" for="formCheck-1" style="color: #000000;">I've read and accept the&nbsp;<a href="#" style="color: rgb(0,0,0);">terms and conditions</a></label></div><input type="submit" class="btn btn-light submit-button" id="signup" style="background: var(--bs-blue);border-color: var(--bs-blue);">
+                    
+                    
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="assets/registration_assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+   <!-- Password matching/not-matching javascript -->
+   <script>
+    var check = function() {
+        if (document.getElementById('passwordencrypted_insert').value == document.getElementById('confirmpasswordencrypted_insert').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = '&nbsp&nbsp&nbsp&nbspPassword matched';
+        } else {
+                document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = '&nbsp&nbsp&nbsp&nbspPassword not matched';
+        }
+    } 
+    </script>
+    
+
+     <!-- Bootstrap Telephone Country Input with flag, based on local IP address -->
+<script>
+    var input = document.querySelector("#phone_insert");
+    intlTelInput(input, {
+        initialCountry: "gr",
+        geoIpLookup: function(success, failure) {
+            $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                success(countryCode);
+            });
+        },
+        utilsScript: "js/utils.js"
+    });
+    </script>
+    
+
+</html>

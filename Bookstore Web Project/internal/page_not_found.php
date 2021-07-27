@@ -1,0 +1,1 @@
+<?php require "internal/page_not_found/index.html"; ?>
