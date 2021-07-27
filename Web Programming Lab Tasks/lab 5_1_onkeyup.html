@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="txt1" onkeyup="sum();" />
+    <input type="text" id="txt2" onkeyup="sum();" />
+    <input type="text" id="txt3" />
+    <script>
+      function sum() {
+        var txtFirstNumberValue = document.getElementById("txt1").value;
+        var txtSecondNumberValue = document.getElementById("txt2").value;
+        var result =parseInt(txtFirstNumberValue) + parseInt(txtSecondNumberValue);
+
+                if (!isNaN(result)) {
+          document.getElementById("txt3").value = result;
+          
+          if (result>1000)
+          alert('heh');
+        
+        }
+      }
+    </script>
+  </body>
+</html>

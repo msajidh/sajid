@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Enter a value</p> <input type="text" value="" id="value"/> <br>
+    <input type="text" id="output" value="0"/>
+    <input type="button" id="add" value="Add" onclick="sum()"/>
+    <script>
+      function sum() {
+        var inputNumber=parseFloat(document.getElementById('value').value);
+        var outputNumber=parseFloat(document.getElementById('output').value);
+
+        result=inputNumber+outputNumber;
+
+        document.getElementById('output').value=result;
+
+        if (result>1000){
+          alert('heh');
+        }
+    }
+    </script>
+  </body>
+</html>

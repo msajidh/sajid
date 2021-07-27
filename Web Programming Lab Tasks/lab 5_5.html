@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example uses the addEventListener() method to attach a "keyup" event to an input element.</p>
+
+Enter your name: <input type="text" id="fname">
+
+
+Your name in capital: <input type="text" id="fname2">
+
+<script>
+document.getElementById("fname").addEventListener("keyup", myFunction);
+
+function myFunction() {
+  var x = document.getElementById("fname");
+  var y = document.getElementById("fname2");
+  y.value = x.value.toUpperCase();
+}
+</script>
+
+</body>
+</html>
+
