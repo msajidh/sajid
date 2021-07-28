@@ -1,0 +1,42 @@
+%%Example-9.6%% Lag-lead Compensator Design
+
+%%Root Locus for Uncompensated system%%
+Gu=zpk([],[0 -6 -10],1);
+figure(1)
+rlocus(Gu)
+grid off
+sgrid(0.456,0)
+title('Root Locus for Un-compensated system')
+
+%%Root Locus for Lead Compensated system%%
+Gc1=zpk([-6],[-29.1],1); %for lead
+Gce1=Gu*Gc1;
+figure(2)
+rlocus(Gce1)
+grid off
+sgrid(0.456,0)
+title('Root Locus for Lead Compensated system')
+
+%%Root Locus for Lag-lead Compensated system%%
+Gc2=zpk([-0.04713],[0.01],1); %for lag-lead
+Gce2=Gu*Gc1*Gc2;
+figure(3)
+rlocus(Gce2)
+grid off
+sgrid(0.456,0)
+title('Root Locus for lag-lead Compensated system')
+
+% Lag-lead compensator Output Response
+Gu=zpk([],[0 -6 -10],192.1)
+G_lead=zpk([],[0 -10 -29.1],1977)                      
+G_lag_lead=zpk([-0.04713],[0 -10 -29.1 -0.01],1971)                      
+T_u=feedback(Gu,1,-1);
+T_lead=feedback(G_lead,1,-1);
+T_lag_lead=feedback(G_lag_lead,1,-1);
+figure(4)
+step(T_u,'-r')
+hold on
+step(T_lead,'b')
+hold on
+step(T_lag_lead,'k')
+legend('Uncompensated response','Lead response','Lag-lead response')

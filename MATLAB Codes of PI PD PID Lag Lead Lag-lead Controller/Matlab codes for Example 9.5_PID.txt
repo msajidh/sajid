@@ -1,0 +1,42 @@
+%%Example-9.5%% PID Controller Design
+
+%%Root Locus for Uncompensated system%%
+Gu=zpk([-8],[-3 -6 -10],1);
+figure(1)
+rlocus(Gu)
+grid off
+sgrid(0.456,0)
+title('Root Locus for Un-compensated system')
+
+%%Root Locus for PD Compensated system%%
+Gc1=zpk([-55.92],[],1); %for PD
+Gce1=Gu*Gc1;
+figure(2)
+rlocus(Gce1)
+grid off
+sgrid(0.456,0)
+title('Root Locus for PD Compensated system')
+
+%%Root Locus for PID Compensated system%%
+Gc2=zpk([-0.5],[0],1); %for PI
+Gce2=Gu*Gc1*Gc2;
+figure(3)
+rlocus(Gce2)
+grid off
+sgrid(0.456,0)
+title('Root Locus for PID Compensated system')
+
+% PID controller Output Response
+Gu=zpk([-8],[-3 -6 -10],121.5)
+G_pd=zpk([-8 -55.92],[-3 -6 -10],18.4)                      
+G_pid=zpk([-8 -55.92 -0.5],[0 -3 -6 -10],20.1)                      
+Tu=feedback(Gu,1,-1);
+Tpd=feedback(G_pd,1,-1);
+Tpid=feedback(G_pid,1,-1);
+figure(4)
+step(Tu,'-r')
+hold on
+step(Tpd,'b')
+hold on
+step(Tpid,'k')
+legend('Uncompensated response','P D response','P I D response')

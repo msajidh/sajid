@@ -1,0 +1,31 @@
+%%Example-9.1%% Proportional plus integral (PI) Controller Design
+
+%%Root Locus for Uncompensated system%%
+num1=[1];
+den1=[1 13 32 20];
+figure(1)
+rlocus(num1,den1)
+grid off
+sgrid(0.174,0)
+title('Root Locus for Un-compensated system')
+
+%%Root Locus for Compensated system%%
+num2=[1 0.1];
+den2=[1 13 32 20 0];
+figure(2)
+rlocus(num2,den2)
+grid off
+sgrid(0.174,0)
+title('Root Locus for Compensated system')
+
+% PI Controller Output Response
+Gu=zpk([],[-1 -2 -10],164.6)
+Gc=zpk([-0.1],[0],1)
+Gce=Gu*Gc;
+Tu=feedback(Gu,1,-1);
+Tc=feedback(Gce,1,-1);
+figure(3)
+step(Tu,'-r')
+hold on
+step(Tc,'b')
+legend('Uncompensated response','Compensated response')

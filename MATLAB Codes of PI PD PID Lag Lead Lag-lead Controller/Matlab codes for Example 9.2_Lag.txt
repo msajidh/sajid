@@ -1,0 +1,30 @@
+%%Example-9.2%% Lag compensator Design
+
+%%Root Locus for Uncompensated system%%
+Gu=zpk([],[-1 -2 -10],1);
+figure(1)
+rlocus(Gu)
+grid off
+sgrid(0.174,0)
+title('Root Locus for Un-compensated system')
+
+%%Root Locus for lag Compensated system%%
+Gc=zpk([-0.111],[-0.01],1);
+Gce=Gu*Gc;
+figure(2)
+rlocus(Gce)
+grid off
+sgrid(0.174,0)
+title('Root Locus for Compensated system')
+
+% Lag compensator Output Response
+Gu=zpk([],[-1 -2 -10],164.6)
+Gc=zpk([-0.111],[-0.01],1);
+Gce=Gu*Gc;
+Tu=feedback(Gu,1,-1);
+Tc=feedback(Gce,1,-1);
+figure(3)
+step(Tu,'-r')
+hold on
+step(Tc,'b')
+legend('Uncompensated response','Compensated response')

@@ -1,0 +1,30 @@
+%%Example-9.3%% Proportional plus differential (PD) Controller Design
+
+%%Root Locus for Uncompensated system%%
+Gu=zpk([],[0 -4 -6],1);
+figure(1)
+rlocus(Gu)
+grid off
+sgrid(0.504,0)
+title('Root Locus for Un-compensated system')
+
+%%Root Locus for Compensated system%%
+Gc=zpk([-3.006],[],1);
+Gce=Gu*Gc;
+figure(2)
+rlocus(Gce)
+grid off
+sgrid(0.504,0)
+title('Root Locus for Compensated system')
+
+% PD Controller Output Response
+Gu=zpk([],[0 -4 -6],43.35);
+Gc=zpk([-3.006],[],1)
+Gce=Gu*Gc;
+Tu=feedback(Gu,1,-1);
+Tc=feedback(Gce,1,-1);
+figure(3)
+step(Tu,'-r')
+hold on
+step(Tc,'b')
+legend('Uncompensated response','Compensated response')

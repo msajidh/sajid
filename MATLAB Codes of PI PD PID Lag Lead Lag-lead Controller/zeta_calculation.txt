@@ -1,0 +1,4 @@
+pos=input('Type desired percent overshoot ');
+                                    % Input desired percent overshoot.
+z=-log(pos/100)/sqrt(pi^2+[log(pos/100)]^2)
+                                    % Calculate damping ratio.

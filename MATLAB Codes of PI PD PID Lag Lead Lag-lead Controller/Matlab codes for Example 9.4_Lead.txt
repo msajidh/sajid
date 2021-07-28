@@ -1,0 +1,30 @@
+%%Example-9.4%% Lead compensator Design
+
+%%Root Locus for Uncompensated system%%
+Gu=zpk([],[0 -4 -6],1);
+figure(1)
+rlocus(Gu)
+grid off
+sgrid(0.358,0)
+title('Root Locus for Un-compensated system')
+
+%%Root Locus for lead Compensated system%%
+Gc=zpk([-5],[-42.96],1);
+Gce=Gu*Gc;
+figure(2)
+rlocus(Gce)
+grid off
+sgrid(0.358,0)
+title('Root Locus for lead Compensated system')
+
+% Lead compensated Output Response
+Gu=zpk([],[0 -4 -6],63.21)
+Gc=zpk([-5],[-42.96],22.51) % gain=22.51 as 63.21*22.51=1423  
+Gce=Gu*Gc;                  % which is K of dom. pole compensating system 
+Tu=feedback(Gu,1,-1);
+Tc=feedback(Gce,1,-1);
+figure(3)
+step(Tu,'-r')
+hold on
+step(Tc,'b')
+legend('Uncompensated response','Compensated response')
